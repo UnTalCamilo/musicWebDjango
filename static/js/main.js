@@ -15,3 +15,8 @@ $(".back_btn").click(function () {
     $(".modal-title").text('Login');
     return false;
 });
+
+// toogle left navbar
+$("#menu-toggle").click(function (){
+    $("#sidebar").toggleClass('d-none');
+});

@@ -1,49 +1,82 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-2 px-0 justify-content-center">
   <div class="container-fluid">
-    <h4 style="font-family: serif;">MusicApp</h4>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link mx-3 active" aria-current="page" href="#">Home</a>
+    <button class="navbar-toggler" type="button" id="menu-toggle">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand mx-auto" style="font-family: serif;">MusicApp</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto flex-fill text-center">
+        <li class="nav-item flex-fill col-1">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link mx-3" href="#">Categories</a>
+        <li class="nav-item flex-fill col-1">
+          <a class="nav-link" href="#">Categories</a>
         </li>
-        <li class="nav-item">
-          <form class="d-flex" action="{% url 'search' %}" autocomplete="off" method="POST">
-            <input class="form-control me-2" type="search" name="data" />
+        <li class="nav-item flex-fill col-4">
+          <form class="d-flex mx-auto"
+                action="{% url 'search' %}"
+                autocomplete="off"
+                method="POST">
+            <style>
+              input[type="search"]::-webkit-input-placeholder {
+                text-align: center;
+              }
+            </style>
+            <input class="form-control me-2"
+                   type="search"
+                   name="data"
+                   placeholder="Search"
+                   aria-label="Search"/>
           </form>
         </li>
+        {% if user.is_authenticated %}
+          <li class="nav-item flex-fill col-1">
+            <a class="nav-link"></a>
+          </li>
+          <li class="nav-item flex-fill col-2">
+              <a class="nav-link"> Welcome {{ user.username }}</a>
+          </li>
+        {% else %}
+          <li class="nav-item flex-fill col-1">
+            <a class="nav-link"></a>
+          </li>
+          <li class="nav-item flex-fill col-2">
+            <a class="nav-link"
+               id="modal_trigger"
+               href="#modal"
+               data-bs-toggle="modal"
+               data-bs-target="#modal">Login or Register</a>
+          </li>
+        {% endif %}
       </ul>
-      <div class="d-flex">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <a class="nav-link" id="modal_trigger" href="#modal" data-bs-toggle="modal" data-bs-target="#modal">Login or Register</a>
-            {% comment %} {% if user.is_authenticated %}
-            <li class="nav-item">
-              <h4 class="nav-link">Welcome</h4>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" style="margin: auto;" href="/logout">Log Out</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" id="modal_trigger" href="#modal" data-bs-toggle="modal" data-bs-target="#modal">Login or Register</a>
-            </li>
-            {% endif %} {% endcomment %}
-        </ul>
-      </div>
-      
-    </div>
-    
-  </div>
-  
-</nav>
-<form class="d-flex d-block d-sm-none" action="{% url 'search' %}" autocomplete="off" method="POST">
-  <input class="form-control me-2" type="search" name="data" />
-</form>
 
-<div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    </div>
+  </div>
+  <div class="container-fluid py-2 d-block d-sm-none">
+    <form class="d-flex mx-auto w-100"
+          action="{% url 'search' %}"
+          autocomplete="off"
+          method="POST">
+      <style>
+              input[type="search"]::-webkit-input-placeholder {
+                text-align: center;
+              }
+      </style>
+      <input class="form-control m-auto"
+             type="search"
+             name="data"
+             placeholder="Search"
+             aria-label="Search"/>
+    </form>
+  </div>
+</nav>
+<div class="modal fade"
+     id="modal"
+     data-bs-backdrop="static"
+     data-bs-keyboard="false"
+     tabindex="-1"
+     aria-labelledby="staticBackdropLabel"
+     aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -54,67 +87,101 @@
         <section class="popupBody">
           <!-- Username & Password Login form -->
           <div id="user_login">
-              <form method="POST">
-                  {% csrf_token %}
-                  <div class="mb-3">
-                    <label class="mb-2 text-muted" for"uname">Username</label>
-                    <input type="text" class="form-control" name="uname" id="uname" required autocomplete="off" autofocus />
-                  </div>
-                  <div class="mb-3">
-                    <div class="mb-2 w-100">
-                      <label class="mb-2 text-muted" for="psw">Password</label>
-                      <a href="#" class="float-end">Forgot password?</a>
-                    </div>
-                    <input type="password" class="form-control" name="psw" id="psw" required />
-                  </div>
-                  
-                  <div class="form-check">
-                      <input id="remember" type="checkbox" />
-                      <label for="remember">Remember me</label>
-                  </div>
-
-                  <div class="d-flex justify-content-evenly">
-                    <button type="submit" class="btn btn-primary">Login</button>
-                    <a href="#" id="register_form" class="btn btn-secondary">Signup</a>
-                  </div>
-              </form>
-
+            <form method="POST" action="{% url 'login' %}" autocomplete="off">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label class="mb-2 text-muted" for"uname">Username</label>
+                <input type="text"
+                       class="form-control"
+                       name="uname"
+                       id="uname"
+                       required
+                       autocomplete="off"
+                       autofocus/>
+              </div>
+              <div class="mb-3">
+                <div class="mb-2 w-100">
+                  <label class="mb-2 text-muted" for="pwd">Password</label>
+                  <a href="#" class="float-end">Forgot password?</a>
+                </div>
+                <input type="password" class="form-control" name="pwd" id="pwd" required />
+              </div>
+              <div class="form-check">
+                <input id="remember" type="checkbox" />
+                <label for="remember">Remember me</label>
+              </div>
+              <div class="d-flex justify-content-evenly">
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a href="#" id="register_form" class="btn btn-secondary">Signup</a>
+              </div>
+            </form>
           </div>
-    
           <!-- Register Form -->
           <div id="user_register" class="d-none">
-            <form  method="POST">
+            <form method="POST" action="{% url 'signup' %}">
               {% csrf_token %}
-                <div class="mb-3">
-                  <input type="text" class="form-control" name="fname" required autocomplete="off" autofocus placeholder="First Name" />
-                </div>
-                <div class="mb-3">
-                  <input type="text" class="form-control" name="lname" required autocomplete="off" autofocus placeholder="Last Name" />
-                </div>
-                <div class="mb-3">
-                  <input type="text" class="form-control" name="username" required autocomplete="off" autofocus placeholder="Username" />
-                </div>
-                <div class="mb-3">
-                  <input type="email" class="form-control" name="email" required autocomplete="off" autofocus placeholder="Email Address" />
-                </div>
-                <div class="mb-3">
-                  <input type="password" class="form-control" name="psw" required autocomplete="off" autofocus placeholder="Password" />
-                </div>
-                <div class="mb-3">
-                  <input type="password" class="form-control" name="c_psw" required autocomplete="off" autofocus placeholder="Confirm Password" />
-                </div>
-
-                <div class="d-flex justify-content-evenly">
-                  <a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i>Back</a>
-                  <button type="submit" class="btn btn-primary">Signup</button>
-                </div>
-  
-              </form>
+              <div class="mb-3">
+                <input type="text"
+                       class="form-control"
+                       name="fname"
+                       required
+                       autocomplete="off"
+                       autofocus
+                       placeholder="First Name"/>
+              </div>
+              <div class="mb-3">
+                <input type="text"
+                       class="form-control"
+                       name="lname"
+                       required
+                       autocomplete="off"
+                       autofocus
+                       placeholder="Last Name"/>
+              </div>
+              <div class="mb-3">
+                <input type="text"
+                       class="form-control"
+                       name="username"
+                       required
+                       autocomplete="off"
+                       autofocus
+                       placeholder="Username"/>
+              </div>
+              <div class="mb-3">
+                <input type="email"
+                       class="form-control"
+                       name="email"
+                       required
+                       autocomplete="off"
+                       autofocus
+                       placeholder="Email Address"/>
+              </div>
+              <div class="mb-3">
+                <input type="password"
+                       class="form-control"
+                       name="pwd"
+                       required
+                       autocomplete="off"
+                       autofocus
+                       placeholder="Password"/>
+              </div>
+              <div class="mb-3">
+                <input type="password"
+                       class="form-control"
+                       name="cpwd"
+                       required
+                       autocomplete="off"
+                       autofocus
+                       placeholder="Confirm Password"/>
+              </div>
+              <div class="d-flex justify-content-evenly">
+                <a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i>Back</a>
+                <button type="submit" class="btn btn-primary">Signup</button>
+              </div>
+            </form>
           </div>
         </section>
       </div>
     </div>
   </div>
-
-  
 </div>
