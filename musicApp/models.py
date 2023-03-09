@@ -25,6 +25,7 @@ music_tags = (
 class Singer(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='images/Singer')
+    song = models.ManyToManyField('Song', related_name='singers')
 
     def __str__(self):
         return self.name
@@ -41,12 +42,6 @@ class Song(models.Model):
     def __str__(self):
         return self.name + ' - ' + self.tag
     
-class SongSinger(models.Model):
-    song = models.ForeignKey(Song, on_delete=models.CASCADE)
-    singer = models.ForeignKey(Singer, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.song.name + ' - ' + self.singer.name
     
 class Playlist(models.Model):
     name = models.CharField(max_length=100)

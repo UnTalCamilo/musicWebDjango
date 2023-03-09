@@ -1,45 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
+  user-select: none;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  min-height: 100vh;
-  background-color: #fff;
+  background-color: #eee;
 }
 
-.side-navbar {
-  transition: 0.5s;
-  background-color: rgb(230, 224, 218);
+.sidebar {
+  padding-top: 2rem;
+  width: 250px;
+  height: 100%;
+  background: #e2dbdb;
 }
 
-.nav-link:active,
-.nav-link:focus,
-.nav-link:hover {
-  background-color: #ffffff26;
+.artist_img {
+  border-radius: 50%;
 }
 
-.my-container {
-  transition: 0.4s;
+.content-main {
+  display: flex;
 }
 
-.active-nav {
-  margin-left: 0;
+.list {
+  margin: 0px 10px;
+  height: 200px;
+  width: 150px;
 }
 
-/* for main section */
-.active-cont {
-  margin-left: 180px;
+.artist_list {
+  border-radius: 4%;
+  position: relative;
+  margin-top: 50px;
+  width: 145px;
+  height: 145px;
 }
 
-#menu-btn {
-  background-color: #100901;
-  color: #fff;
-  margin-left: -62px;
+.artist_list img {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  margin: auto;
+  display: block;
+  object-fit: cover;
 }
 
-.my-container input {
-  border-radius: 2rem;
-  padding: 2px 20px;
+.artist_list p {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.customFont {
+  font-family: 'Baloo Bhai 2', cursive;
+  font-size: 0.9rem;
+  line-height: 2;
+  color: rgb(71, 70, 70);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+  .sidebar {
+    position: fixed;
+    width: 200px;
+    left: -250px;
+    transition: left 0.4s ease;
+    top: 110px;
+    z-index: 1;
+  }
+
+  .sidebar.show {
+    left: 0px;
+  }
+
+  .feat-show {
+    transition: all 0.5s;
+  }
 }

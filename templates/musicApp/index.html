@@ -1,18 +1,24 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block content %}
-    <div class="container my-4 mx-2">
-        <h4 style="font-family: serif;">Songs</h4>
-        {% for key, value in top_artists.items %}
-            {{ key }}//{{ value }}
-            
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" alt="..." src="">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="row py-4 px-2">
+        <h3 style="font-family: serif;
+            margin-bottom: -30px; margin-left: 8px;">Top Artists</h3>
+        <div class="main-carousel"
+             data-flickity='{"groupCells":5 , "contain": true, "pageDots": false, "draggable": false, "cellAlign": "left"}'>
+            {% for artist in top_artists.artists.items %}
+                <div class="carousel-cell">
+                    <div class="list">
+                        <div class="artist_list">
+                            <a href="{% url 'artist' artist.name %}">
+                                <img src="{{ artist.images.0.url }}" width="" height="" alt=""/>
+                            </a>
+                        </div>
+                        <div class="mt-2">
+                            <p class="customFont">{{ artist.name }}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock content %}

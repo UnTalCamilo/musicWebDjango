@@ -19,13 +19,14 @@ spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(cl
 
 # Create your views here.
 def index(request):
-    top_artists = spotify.search(q='year:2023', type='artist', limit=5)
+    top_artists = spotify.search(q='year:2023', type='artist', limit=10)
     print(type(top_artists))  # imprime el tipo de dato de top_artists
     # imprime el nombre de los artistas
     for artist in top_artists['artists']['items']:
-        print(artist)
-        print()
+        print(artist, end="\n\n")
+    
     return render(request, 'musicApp/index.html', {'top_artists': top_artists})
+
 
 def search(request):
     pass
@@ -79,3 +80,16 @@ def logout(request):
     except Exception as e:
         print("Exception: ", e)
         return redirect('/')
+    
+
+def artist(request, name):
+    print("name: ", name)
+    info_artist = spotify.search(q='artist:' + name, type='artist', limit=1)
+    artist_id = info_artist['artists']['items'][0]['id']
+    music_artist = spotify.artist_top_tracks(artist_id)
+    for music in music_artist['tracks']:
+        print(type(music))
+        print(music['name'], end="\n\n")
+        break
+    return render(request, 'musicApp/options/artist.html', {'info_artist': info_artist['artists']['items'][0],
+                                                            'music_artist': music_artist['tracks']})

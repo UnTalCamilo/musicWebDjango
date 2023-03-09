@@ -9,15 +9,16 @@
         <link rel="stylesheet"
               href="{% static 'css/icons/all.css' %}"
               crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/flickity.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <title>musicApp</title>
     </head>
     <body>
         <!-- Nav tabs -->
         {% include 'musicApp/navbar.html' %}
-        <div class="row">
-            {% include 'musicApp/leftNB.html' %}
-            <div class="col-7">
+        <div class="content-main">
+            {% include 'musicApp/slidenv.html' %}
+            <div class="container-fluid">
                 {% block content %}
                 {% endblock content %}
             </div>
@@ -27,6 +28,7 @@
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
         <script src="{% static 'js/jquery-3.6.3.min.js' %}"></script>
         <script src="{% static 'js/jquery.leanModal.min.js' %}"></script>
+        <script src="{% static 'js/flickity.pkgd.min.js' %}"></script>
         <script src="{% static 'js/main.js' %}"></script>
     </body>
 </html>

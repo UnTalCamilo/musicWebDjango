@@ -1,6 +1,5 @@
-<div id="sidebar"
-     class="col-sm-2 d-none d-sm-block side-navbar d-flex justify-content-between flex-wrap flex-column px-3 py-5">
-    <ul class="nav flex-column text-white w-100">
+<nav class="sidebar" id="sidebar">
+    <ul class="navbar-nav py-3 px-4">
         <li class="nav-item">
             <a class="nav-link text-muted py-1">
                 <i class="fas fa-compact-disc"></i> AllSongs
@@ -13,21 +12,20 @@
         </li>
         <li class="nav-item">
             <a class="nav-link text-muted py-1">
-                <i class="fas fa-compact-disc"></i> LikedSongs
+                <i class="fa-solid fa-heart"></i> LikedSongs
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-muted py-1">
-                <i class="fas fa-compact-disc"></i> PlayList
+                <i class="fa-solid fa-list"></i> PlayList
             </a>
         </li>
         {% if user.is_authenticated %}
             <li class="nav-item">
                 <a class="nav-link text-muted py-1" href="{% url 'logout' %}">
-                    <i class="fas fa-sign-out-alt"></i> LogOut
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> LogOut
                 </a>
             </li>
         {% endif %}
-        
     </ul>
-</div>
+</nav>

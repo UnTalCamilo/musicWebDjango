@@ -17,6 +17,7 @@ $(".back_btn").click(function () {
 });
 
 // toogle left navbar
-$("#menu-toggle").click(function (){
-    $("#sidebar").toggleClass('d-none');
+$("#menu-toggle").click(function () {
+    $("#sidebar").toggleClass('show');
 });
+
