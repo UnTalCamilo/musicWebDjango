@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.db.models import Q
+import sys
 
 from configparser import ConfigParser
 from django.conf import settings
@@ -20,12 +21,10 @@ spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(cl
 # Create your views here.
 def index(request):
     top_artists = spotify.search(q='year:2023', type='artist', limit=10)
-    print(type(top_artists))  # imprime el tipo de dato de top_artists
-    # imprime el nombre de los artistas
-    for artist in top_artists['artists']['items']:
-        print(artist, end="\n\n")
-    
-    return render(request, 'musicApp/index.html', {'top_artists': top_artists})
+    top_music = spotify.search(q='year:2023', type='track', limit=1)
+       
+    return render(request, 'musicApp/index.html', {'top_artists': top_artists,
+                                                   'top_music': top_music})
 
 
 def search(request):

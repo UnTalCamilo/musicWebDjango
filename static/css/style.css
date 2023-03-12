@@ -8,8 +8,14 @@
   font-family: 'Poppins', sans-serif;
 }
 
-body {
+body{
   background-color: #eee;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar {
@@ -32,6 +38,8 @@ body {
   height: 200px;
   width: 150px;
 }
+
+/*Artist list*/
 
 .artist_list {
   border-radius: 4%;
@@ -56,6 +64,31 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+/*Track list*/
+
+.track_list {
+  background-color: aqua;
+  position: relative;
+  margin-top: 50px;
+  width: 145px;
+  height: 145px;
+}
+
+.track_list img {
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.track_list p {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
 .customFont {
   font-family: 'Baloo Bhai 2', cursive;
   font-size: 0.9rem;
@@ -67,7 +100,19 @@ body {
   text-align: center;
 }
 
+iframe{
+  width: 100%;
+  height: 80px;
+}
 
+footer{
+  width: 100%;
+  margin-top: auto;
+}
+
+.footer{
+  text-align: center;
+}
 
 
 @media screen and (max-width: 600px) {

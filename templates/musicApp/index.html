@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="row py-4 px-2">
-        <h3 style="font-family: serif;
-            margin-bottom: -30px; margin-left: 8px;">Top Artists</h3>
+        <h3 style="font-family: serif; margin-bottom: -30px; margin-left: 8px;">Top Artists</h3>
         <div class="main-carousel"
              data-flickity='{"groupCells":5 , "contain": true, "pageDots": false, "draggable": false, "cellAlign": "left"}'>
             {% for artist in top_artists.artists.items %}
@@ -10,12 +9,34 @@
                     <div class="list">
                         <div class="artist_list">
                             <a href="{% url 'artist' artist.name %}">
-                                <img src="{{ artist.images.0.url }}" width="" height="" alt=""/>
+                                <img src="{{ artist.images.1.url }}" width="" height="" alt=""/>
                             </a>
                         </div>
                         <div class="mt-2">
                             <p class="customFont">{{ artist.name }}</p>
                         </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row px-2 mb-3">
+        <h3 style="font-family: serif; margin-bottom: -30px; margin-left: 8px;">Top Tracks</h3>
+        <div class="main-carousel"
+             data-flickity='{"groupCells":5 , "contain": true, "pageDots": false, "draggable": false, "cellAlign": "left"}'>
+            {% for track in top_music.tracks.items %}
+                <div class="carousel-cell">
+                    <div class="list">
+                        <div class="track_list">
+                            <a>
+                                <img src="{{ track.album.images.1.url }}" width="" height="" alt=""/>
+                            </a>
+                        </div>
+                        <div>
+                            <p class="customFont">{{ track.name }}</p>
+                            <p class="customFont">heart</p>
+                        </div>
+                        
                     </div>
                 </div>
             {% endfor %}
