@@ -2,11 +2,14 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.db.models import Q
-import sys
 
 from configparser import ConfigParser
 from django.conf import settings
 
+from django.http import JsonResponse
+
+# Models
+from .models import Song, LikedSong, Playlist, PlaylistSong, History
 
 # spotify api
 import spotipy
@@ -21,7 +24,7 @@ spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(cl
 # Create your views here.
 def index(request):
     top_artists = spotify.search(q='year:2023', type='artist', limit=10)
-    top_music = spotify.search(q='year:2023', type='track', limit=1)
+    top_music = spotify.search(q='year:2023', type='track', limit=10)
        
     return render(request, 'musicApp/index.html', {'top_artists': top_artists,
                                                    'top_music': top_music})
@@ -92,3 +95,25 @@ def artist(request, name):
         break
     return render(request, 'musicApp/options/artist.html', {'info_artist': info_artist['artists']['items'][0],
                                                             'music_artist': music_artist['tracks']})
+
+def liked(request):
+    try:
+        id_song = request.POST.get('id')
+        name_song = request.POST.get('name')
+        artist_song = request.POST.get('artist')
+        uri = request.POST.get('uri')
+        url_song = request.POST.get('song')
+        url_image = request.POST.get('image')
+
+        tmp_song = Song.objects.filter(id=id_song)
+        if len(tmp_song) == 0:
+            song = Song(id=id_song, song_name=name_song, artist_name=artist_song, uri=uri, url_song=url_song, url_image=url_image)
+            song.save()
+        
+        liked_song = LikedSong(user=request.user, song=song)
+        liked_song.save()
+        return JsonResponse({'status': 'ok'})
+
+    except Exception as e:
+        print("Exception: ", e)
+        return JsonResponse({'status': 'error'})

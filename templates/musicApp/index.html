@@ -28,15 +28,22 @@
                 <div class="carousel-cell">
                     <div class="list">
                         <div class="track_list">
+                            <p class="customFont">{{ track.name }}</p>
                             <a>
                                 <img src="{{ track.album.images.1.url }}" width="" height="" alt=""/>
                             </a>
+                            <div class="mt-2">
+                                <i id="{{ track.id }}"
+                                   class="fas fa-heart"
+                                   onclick="likedSong(event.target, '{{ csrf_token }}', '{% url 'liked' %}')"
+                                   data-id="{{ track.id }}"
+                                   data-name="{{ track.name }}"
+                                   data-artist="{{ track.artists.0.name }}"
+                                   data-uri="{{ track.uri }}"
+                                   data-image="{{ track.album.images.1.url }}"
+                                   data-song="{{ track.href }}"></i>
+                            </div>
                         </div>
-                        <div>
-                            <p class="customFont">{{ track.name }}</p>
-                            <p class="customFont">heart</p>
-                        </div>
-                        
                     </div>
                 </div>
             {% endfor %}

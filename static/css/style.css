@@ -33,6 +33,10 @@ body{
   display: flex;
 }
 
+.carousel-cell {
+  height: 270px;
+}
+
 .list {
   margin: 0px 10px;
   height: 200px;
@@ -58,6 +62,10 @@ body{
   object-fit: cover;
 }
 
+.artist_list img:hover {
+  opacity: 0.3;
+}
+
 .artist_list p {
   text-align: center;
   margin-top: 0.5rem;
@@ -67,7 +75,6 @@ body{
 /*Track list*/
 
 .track_list {
-  background-color: aqua;
   position: relative;
   margin-top: 50px;
   width: 145px;
@@ -80,24 +87,30 @@ body{
   margin: auto;
   display: block;
   object-fit: cover;
+  border-radius: 10%; 
 }
 
-.track_list p {
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
+.track_list img:hover {
+  opacity: 0.3;
 }
-
-
 
 .customFont {
   font-family: 'Baloo Bhai 2', cursive;
   font-size: 0.9rem;
-  line-height: 2;
   color: rgb(71, 70, 70);
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
   text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.fa-heart.active{
+  font-size: 25px;
+  color: red;
+}
+
+.fa-heart:hover{
+  font-size: 35px;
 }
 
 iframe{

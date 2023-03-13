@@ -1,52 +1,29 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-music_tags = (
-    ('Pop', 'Pop'),
-    ('Rock', 'Rock'),
-    ('Hip-Hop', 'Hip-Hop'),
-    ('Jazz', 'Jazz'),
-    ('Blues', 'Blues'),
-    ('Folk', 'Folk'),
-    ('Classical', 'Classical'),
-    ('Electronic', 'Electronic'),
-    ('Reggae', 'Reggae'),
-    ('Metal', 'Metal'),
-    ('Punk', 'Punk'),
-    ('Disco', 'Disco'),
-    ('Rap', 'Rap'),
-    ('Alternative', 'Alternative'),
-    ('Ska', 'Ska'),
-    ('Reggaeton', 'Reggaeton'),
-    ('Unknown', 'Unknown'),
-)
 
-# Create your models here.
-class Singer(models.Model):
-    name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='images/Singer')
-    song = models.ManyToManyField('Song', related_name='singers')
-
-    def __str__(self):
-        return self.name
-    
-
-    
 class Song(models.Model):
-    name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='images/Song')
-    file = models.FileField(upload_to='files/Song')
-    tag = models.CharField(max_length=100, choices=music_tags, default='Unknown')
-    year = models.IntegerField()
+    id = models.CharField(max_length=50, primary_key=True)
+    song_name = models.CharField(max_length=50)
+    artist_name = models.CharField(max_length=50)
+    uri = models.CharField(max_length=100)
+    url_song = models.CharField(max_length=100)
+    url_image = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.name + ' - ' + self.tag
-    
-    
-class Playlist(models.Model):
-    name = models.CharField(max_length=100)
+class LikedSong(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    songs = models.ManyToManyField(Song)
+    song = models.ForeignKey(Song, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.name
+class Playlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    playlist_name = models.CharField(max_length=50)
+    description = models.CharField(max_length=100)
+
+class PlaylistSong(models.Model):
+    playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
+    song = models.ForeignKey(Song, on_delete=models.CASCADE)
+
+class History(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    song = models.ForeignKey(Song, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)

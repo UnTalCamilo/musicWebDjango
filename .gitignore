@@ -1,4 +1,8 @@
 /env
 __pycache__
 config.ini
-/musicApp/migrations
+sqldiff.exe
+sqlite3_analyzer.exe
+sqlite3.exe
+test.json
+
