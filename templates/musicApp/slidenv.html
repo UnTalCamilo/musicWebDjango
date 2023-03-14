@@ -1,17 +1,17 @@
 <nav class="sidebar" id="sidebar">
     <ul class="navbar-nav py-3 px-4">
         <li class="nav-item">
-            <a class="nav-link text-muted py-1">
+            <a class="nav-link text-muted py-1" href="/">
                 <i class="fas fa-compact-disc"></i> AllSongs
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-muted py-1">
+            <a class="nav-link text-muted py-1" href="{% url 'history' %}">
                 <i class="fas fa-history"></i> History
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-muted py-1">
+            <a class="nav-link text-muted py-1" href="{% url 'liked_songs' %}">
                 <i class="fa-solid fa-heart"></i> LikedSongs
             </a>
         </li>
@@ -26,6 +26,25 @@
                     <i class="fa-solid fa-arrow-right-from-bracket"></i> LogOut
                 </a>
             </li>
+        {% else %}
+            <li class="nav-item d-block d-sm-none"
+                id="modal_trigger"
+                href="#modal"
+                data-bs-toggle="modal"
+                data-bs-target="#modal">
+                <a class="nav-link text-muted py-1">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> LogIn
+                </a>
+            </li>
         {% endif %}
     </ul>
+    <div class="embed-responsive embed-responsive-1by1">
+        <iframe id="spotify-player"
+                class="embed-responsive-item w-100"
+                src=""
+                frameborder="0"
+                allowtransparency="true"
+                allow="encrypted-media"
+                allow="autoplay"></iframe>
+    </div>
 </nav>

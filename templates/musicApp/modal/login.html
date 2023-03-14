@@ -1,0 +1,115 @@
+<div class="modal fade"
+     id="modal"
+     data-bs-backdrop="static"
+     data-bs-keyboard="false"
+     tabindex="-1"
+     aria-labelledby="staticBackdropLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">Login</span>
+                <span class="modal_close" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true"></i></span>
+            </div>
+            <div class="modal-body">
+                <section class="popupBody">
+                    <!-- Username & Password Login form -->
+                    <div id="user_login">
+                        <form method="POST" action="{% url 'login' %}" autocomplete="off">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label class="mb-2 text-muted" for"uname">Username</label>
+                                <input type="text"
+                                       class="form-control"
+                                       name="uname"
+                                       id="uname"
+                                       required
+                                       autocomplete="off"
+                                       autofocus/>
+                            </div>
+                            <div class="mb-3">
+                                <div class="mb-2 w-100">
+                                    <label class="mb-2 text-muted" for="pwd">Password</label>
+                                    <a href="#" class="float-end">Forgot password?</a>
+                                </div>
+                                <input type="password" class="form-control" name="pwd" id="pwd" required />
+                            </div>
+                            <div class="form-check">
+                                <input id="remember" type="checkbox" />
+                                <label for="remember">Remember me</label>
+                            </div>
+                            <div class="d-flex justify-content-evenly">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                                <a href="#" id="register_form" class="btn btn-secondary">Signup</a>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Register Form -->
+                    <div id="user_register" class="d-none">
+                        <form method="POST" action="{% url 'signup' %}">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <input type="text"
+                                       class="form-control"
+                                       name="fname"
+                                       required
+                                       autocomplete="off"
+                                       autofocus
+                                       placeholder="First Name"/>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text"
+                                       class="form-control"
+                                       name="lname"
+                                       required
+                                       autocomplete="off"
+                                       autofocus
+                                       placeholder="Last Name"/>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text"
+                                       class="form-control"
+                                       name="username"
+                                       required
+                                       autocomplete="off"
+                                       autofocus
+                                       placeholder="Username"/>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email"
+                                       class="form-control"
+                                       name="email"
+                                       required
+                                       autocomplete="off"
+                                       autofocus
+                                       placeholder="Email Address"/>
+                            </div>
+                            <div class="mb-3">
+                                <input type="password"
+                                       class="form-control"
+                                       name="pwd"
+                                       required
+                                       autocomplete="off"
+                                       autofocus
+                                       placeholder="Password"/>
+                            </div>
+                            <div class="mb-3">
+                                <input type="password"
+                                       class="form-control"
+                                       name="cpwd"
+                                       required
+                                       autocomplete="off"
+                                       autofocus
+                                       placeholder="Confirm Password"/>
+                            </div>
+                            <div class="d-flex justify-content-evenly">
+                                <a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i>Back</a>
+                                <button type="submit" class="btn btn-primary">Signup</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

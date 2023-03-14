@@ -21,6 +21,18 @@ $("#menu-toggle").click(function () {
     $("#sidebar").toggleClass('show');
 });
 
+
+
+// liked song click
+
+function clickLike(elem, token, url_like, url_dislike) {
+    if ($(elem).hasClass('active')) {
+        dislikedSong(elem, token, url_dislike, true);
+    } else {
+        likedSong(elem, token, url_like);
+    }
+};
+
 // like button
 function likedSong(elem, token, url) {
     const id = elem.dataset.id;
@@ -57,3 +69,54 @@ function likedSong(elem, token, url) {
 
 }
 
+function dislikedSong(elem, token, url, flag) {
+    const id = elem.dataset.id;
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            'id': id,
+            'csrfmiddlewaretoken': token
+        },
+        beforeSend: function () {
+            $(elem).html('<i id="temp" class="fas fa-spinner fa-spin"></i>');
+        },
+        success: function (data) {
+            $("#temp").remove();
+            if (flag == true) {
+                $(`#${id}`).toggleClass('active')
+            } else {
+                $(`#${id}`).removeClass('active');
+            }
+        },
+        error: function (data) {
+            console.log(data);
+        }
+    });
+}
+
+function playSong(id, url, token, opt) {
+    console.log(id)
+    $("#spotify-player").attr('src', `https://open.spotify.com/embed/track/${id}?autoplay=1`);
+
+    if (opt == 1){
+        console.log('liked')
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                'id': id,
+                'csrfmiddlewaretoken': token
+            },
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    }
+    
+
+}

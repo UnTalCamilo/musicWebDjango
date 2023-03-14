@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row py-4 px-2">
+        {% if info_artist|length > 0 %}
+            <h3 style="font-family: serif; margin-left: 8px;">Top Artists</h3>
+            <div class="main-carousel"
+                 data-flickity='{"groupCells":5 , "contain": true, "pageDots": false, "draggable": false, "cellAlign": "left"}'>
+                {% for artist in info_artist %}
+                    <div class="carousel-cell">
+                        <div class="list">
+                            <div class="artist_list">
+                                <a href="{% url 'artist' artist.name %}">
+                                    <img src="{{ artist.images.1.url }}" width="" height="" alt=""/>
+                                </a>
+                            </div>
+                            <div class="mt-2">
+                                <p class="customFont">{{ artist.name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h3 style="font-family: serif; margin-left: 8px;">No Artists</h3>
+        {% endif %}
+    </div>
+    <div class="row px-2 py-4">
+        {% if info_music|length > 0 %}
+            <h3 style="font-family: serif; margin-left: 8px;">Top Tracks</h3>
+            <div class="main-carousel"
+                 data-flickity='{"groupCells":5 , "contain": true, "pageDots": false, "draggable": false, "cellAlign": "left"}'>
+                {% for track in info_music %}
+                    <div class="carousel-cell">
+                        <div class="list">
+                            <div class="track_list">
+                                <p class="customFont">{{ track.name }}</p>
+                                <a>
+                                    <img src="{{ track.album.images.1.url }}"
+                                         width=""
+                                         height=""
+                                         alt=""
+                                         onclick="playSong('{{ track.id }}', '{% url 'addhistory' %}', '{{ csrf_token }}', '1')"/>
+                                </a>
+                                <div class="mt-2">
+                                    <i id="{{ track.id }}"
+                                       class="fas fa-heart"
+                                       onclick="clickLike(event.target, '{{ csrf_token }}', '{% url 'liked' %}', '{% url 'disliked' %}')"
+                                       data-id="{{ track.id }}"
+                                       data-name="{{ track.name }}"
+                                       data-artist="{{ track.artists.0.name }}"
+                                       data-uri="{{ track.uri }}"
+                                       data-image="{{ track.album.images.1.url }}"
+                                       data-song="{{ track.href }}"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h3 style="font-family: serif; margin-left: 8px;">No Music</h3>
+        {% endif %}
+    </div>
+{% endblock content %}

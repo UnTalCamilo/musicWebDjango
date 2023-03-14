@@ -20,7 +20,7 @@ body{
 
 .sidebar {
   padding-top: 2rem;
-  width: 250px;
+  width: 300px;
   height: 100%;
   background: #e2dbdb;
 }
@@ -47,17 +47,13 @@ body{
 
 .artist_list {
   border-radius: 4%;
-  position: relative;
-  margin-top: 50px;
-  width: 145px;
-  height: 145px;
+  margin-top: 20px;
 }
 
 .artist_list img {
   width: 150px;
   height: 150px;
   border-radius: 100%;
-  margin: auto;
   display: block;
   object-fit: cover;
 }
@@ -75,17 +71,12 @@ body{
 /*Track list*/
 
 .track_list {
-  position: relative;
-  margin-top: 50px;
-  width: 145px;
-  height: 145px;
+  margin-top: 10px;
 }
 
 .track_list img {
   width: 150px;
   height: 150px;
-  margin: auto;
-  display: block;
   object-fit: cover;
   border-radius: 10%; 
 }
@@ -100,8 +91,9 @@ body{
   color: rgb(71, 70, 70);
   overflow: hidden;
   text-align: center;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  max-height: 70px;
 }
 
 .fa-heart.active{
@@ -131,8 +123,8 @@ footer{
 @media screen and (max-width: 600px) {
   .sidebar {
     position: fixed;
-    width: 200px;
-    left: -250px;
+    width: 300px;
+    left: -300px;
     transition: left 0.4s ease;
     top: 110px;
     z-index: 1;
@@ -144,5 +136,11 @@ footer{
 
   .feat-show {
     transition: all 0.5s;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }
 }

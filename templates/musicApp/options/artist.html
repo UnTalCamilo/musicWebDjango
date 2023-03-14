@@ -1,27 +1,50 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="row">
-        <div class="card mb-3" style="max-width: 540px;">
+    <div class="container py-4 px-2">
+        <div class="card rounded mb-3" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="{{ info_artist.images.0.url }}" alt="{{ info_artist.name }}" class="img-fluid rounded-start" alt="...">
+                    <img class="img-fluid rounded-start"
+                         width=""
+                         height=""
+                         src="{{ info_artist.images.2.url }}"
+                         alt="{{ info_artist.name }}">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">Geners</h5>
-                        <p class="card-text">
-                            {{ info_artist.genres|join:", " }}
-                        </p>
-                        <p class="card-text">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </p>
+                        <h5 class="card-title" style="font-family: serif;">Tags</h5>
+                        <p class="card-text" style="font-family: serif;">{{ info_artist.genres|join:" - " }}</p>
                     </div>
                 </div>
             </div>
         </div>
-        {% for music in music_artist %}
-            {{ music.name }}
-        {% endfor %}
-               
+        <div class="row">
+            <h2 style="font-family: serif; margin-left: 8px; margin-top:30px">Songs</h2>
+            {% for track in music_artist %}
+                <div class="col-4 col-md-3 col-lg-2">
+                    <div class="track_list">
+                        <p class="customFont">{{ track.name }}</p>
+                        <a>
+                            <img src="{{ track.album.images.1.url }}"
+                                 width=""
+                                 height=""
+                                 alt=""
+                                 onclick="playSong('{{ track.id }}', '{% url 'addhistory' %}', '{{ csrf_token }}', '1')"/>
+                        </a>
+                        <div class="mt-2">
+                            <i id="{{ track.id }}"
+                               class="fas fa-heart"
+                               onclick="clickLike(event.target, '{{ csrf_token }}', '{% url 'liked' %}', '{% url 'disliked' %}')"
+                               data-id="{{ track.id }}"
+                               data-name="{{ track.name }}"
+                               data-artist="{{ track.artists.0.name }}"
+                               data-uri="{{ track.uri }}"
+                               data-image="{{ track.album.images.1.url }}"
+                               data-song="{{ track.href }}"></i>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock content %}
