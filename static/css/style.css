@@ -39,7 +39,7 @@ body{
 }
 
 .list {
-  margin: 0px 10px;
+  margin-right: 60px;
   height: 200px;
   width: 150px;
 }
@@ -49,6 +49,7 @@ body{
 .artist_list {
   border-radius: 4%;
   margin-top: 20px;
+  
 }
 
 .artist_list img {
@@ -94,9 +95,21 @@ body{
   color: rgb(71, 70, 70);
   overflow: hidden;
   text-align: center;
+  min-height: 70px;
   padding: 0;
   margin: 0;
-  max-height: 70px;
+}
+
+.customFontLiked{
+  font-family: 'Baloo Bhai 2', cursive;
+  font-size: 0.9rem;
+  color: rgb(71, 70, 70);
+  overflow: hidden;
+  text-align: center;
+  min-height: 5px;
+  padding: 0;
+  margin: 0;
+  background-color: #eee;
 }
 
 .italicFont {
