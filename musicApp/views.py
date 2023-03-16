@@ -79,7 +79,7 @@ def signup(request):
             if len(users) > 0:
                 print("Username or Email already exists")
                 messages.info(request, 'Username or Email already exists')
-                return render(request, 'musicApp/index.html')
+                return redirect('/')
             else:
                 user = User.objects.create_user(username=username, password=password, email=email, first_name=fname, last_name=lname)
                 user.save()

@@ -14,14 +14,6 @@ class LikedSong(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     song = models.ForeignKey(Song, on_delete=models.CASCADE)
 
-class Playlist(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    playlist_name = models.CharField(max_length=50)
-    description = models.CharField(max_length=100)
-
-class PlaylistSong(models.Model):
-    playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
-    song = models.ForeignKey(Song, on_delete=models.CASCADE)
 
 class History(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

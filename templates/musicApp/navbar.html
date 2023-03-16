@@ -3,7 +3,7 @@
     <button class="navbar-toggler" type="button" id="menu-toggle">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand mx-auto" style="font-family: serif;" href="/">MusicApp</a>
+    <a class="navbar-brand mx-auto" href="/" style="font-family: serif;">MusicApp</a>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto flex-fill text-center">
         <li class="nav-item flex-fill col-1">
@@ -17,7 +17,7 @@
                 action="{% url 'search' %}"
                 autocomplete="off"
                 method="POST">
-                {% csrf_token %}
+            {% csrf_token %}
             <style>
               input[type="search"]::-webkit-input-placeholder {
                 text-align: center;
@@ -35,7 +35,7 @@
             <a class="nav-link"></a>
           </li>
           <li class="nav-item flex-fill col-2">
-              <a class="nav-link"> Welcome {{ user.username }}</a>
+            <a class="nav-link" style="font-family: serif;">Welcome {{ user.username }}</a>
           </li>
         {% else %}
           <li class="nav-item flex-fill col-1">
@@ -46,11 +46,11 @@
                id="modal_trigger"
                href="#modal"
                data-bs-toggle="modal"
-               data-bs-target="#modal">Login or Register</a>
+               data-bs-target="#modal"
+               style="font-family: serif">Login or Register</a>
           </li>
         {% endif %}
       </ul>
-
     </div>
   </div>
   <div class="container-fluid py-2 d-block d-sm-none">
@@ -58,7 +58,7 @@
           action="{% url 'search' %}"
           autocomplete="off"
           method="POST">
-          {% csrf_token %}
+      {% csrf_token %}
       <style>
               input[type="search"]::-webkit-input-placeholder {
                 text-align: center;
@@ -72,5 +72,4 @@
     </form>
   </div>
 </nav>
-
 {% include 'musicApp/modal/login.html' %}

@@ -1,28 +1,23 @@
 <nav class="sidebar" id="sidebar">
     <ul class="navbar-nav py-3 px-4">
         <li class="nav-item">
-            <a class="nav-link text-muted py-1" href="/">
+            <a class="nav-link text-muted py-1 italicFont" href="/">
                 <i class="fas fa-compact-disc"></i> AllSongs
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-muted py-1" href="{% url 'history' %}">
+            <a class="nav-link text-muted py-1 italicFont" href="{% url 'history' %}">
                 <i class="fas fa-history"></i> History
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-muted py-1" href="{% url 'liked_songs' %}">
+            <a class="nav-link text-muted py-1 italicFont" href="{% url 'liked_songs' %}">
                 <i class="fa-solid fa-heart"></i> LikedSongs
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-muted py-1">
-                <i class="fa-solid fa-list"></i> PlayList
             </a>
         </li>
         {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link text-muted py-1" href="{% url 'logout' %}">
+                <a class="nav-link text-muted py-1 italicFont" href="{% url 'logout' %}">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i> LogOut
                 </a>
             </li>
@@ -32,19 +27,10 @@
                 href="#modal"
                 data-bs-toggle="modal"
                 data-bs-target="#modal">
-                <a class="nav-link text-muted py-1">
+                <a class="nav-link text-muted py-1 italicFont">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i> LogIn
                 </a>
             </li>
         {% endif %}
     </ul>
-    <div class="embed-responsive embed-responsive-1by1">
-        <iframe id="spotify-player"
-                class="embed-responsive-item w-100"
-                src=""
-                frameborder="0"
-                allowtransparency="true"
-                allow="encrypted-media"
-                allow="autoplay"></iframe>
-    </div>
 </nav>

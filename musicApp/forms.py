@@ -11,15 +11,6 @@ class LikedSongForm(forms.ModelForm):
         model = LikedSong
         fields = ['user', 'song']
 
-class PlaylistForm(forms.ModelForm):
-    class Meta:
-        model = Playlist
-        fields = ['user', 'playlist_name', 'description']
-
-class PlaylistSongForm(forms.ModelForm):
-    class Meta:
-        model = PlaylistSong
-        fields = ['playlist', 'song']
 
 class HistoryForm(forms.ModelForm):
     class Meta:

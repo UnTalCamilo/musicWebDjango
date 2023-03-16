@@ -16,9 +16,7 @@
     <body>
         {% if messages %}
             <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
+                {% for message in messages %}<div class="alert alert-danger" role="alert">{{ message }}</div>{% endfor %}
             </ul>
         {% endif %}
         <!-- Nav tabs -->

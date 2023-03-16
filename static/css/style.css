@@ -16,13 +16,13 @@ body{
   height: 100vh;
   display: flex;
   flex-direction: column;
+  padding-bottom: 50px;
 }
 
 .sidebar {
   padding-top: 2rem;
   width: 300px;
   height: 100%;
-  background: #e2dbdb;
 }
 
 .artist_img {
@@ -31,6 +31,7 @@ body{
 
 .content-main {
   display: flex;
+  padding-bottom: 70px;
 }
 
 .carousel-cell {
@@ -72,6 +73,8 @@ body{
 
 .track_list {
   margin-top: 10px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
 }
 
 .track_list img {
@@ -96,6 +99,14 @@ body{
   max-height: 70px;
 }
 
+.italicFont {
+  font-family: 'Baloo Bhai 2', cursive;
+  color: rgb(71, 70, 70);
+  padding: 0;
+  margin: 0;
+  max-height: 70px;
+}
+
 .fa-heart.active{
   font-size: 25px;
   color: red;
@@ -111,8 +122,9 @@ iframe{
 }
 
 footer{
+  position: fixed;
   width: 100%;
-  margin-top: auto;
+  bottom: 0;
 }
 
 .footer{
